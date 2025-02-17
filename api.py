@@ -1,15 +1,18 @@
 from flask import Flask, jsonify, request
-import subprocess
+from flask_cors import CORS
 
 from calls import call
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/api', methods=['GET'])
+
+@app.route("/api", methods=["GET"])
 def get_sentiment():
     return jsonify(call("Example text"))
 
-@app.route('/generate', methods=['POST'])
+
+@app.route("/generate", methods=["POST"])
 def generate():
     data = request.json
     input_text = data.get("text", "")
@@ -21,5 +24,5 @@ def generate():
     return jsonify(response_json)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
