@@ -37,10 +37,12 @@ def call(text, prompt="V1_0_0"):
             parsed_json = json.loads(model_output)
             return parsed_json
         except json.JSONDecodeError:
-            return {
-                "error": "Invalid JSON response from model",
-                "raw_output": model_output,
-            }
+            if prompt == "fix_json":
+                return {
+                    "error": "Invalid JSON response from model",
+                    "raw_output": model_output,
+                }
+                call(model_output, "fix_json")
 
     return {
         "error": f"API request failed with status {response.status_code}",
