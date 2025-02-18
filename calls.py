@@ -13,6 +13,7 @@ model = os.getenv("MODEL_NAME", "llama3-8b-8192")
 
 
 def call(text, prompt="V1_0_0"):
+    print("Running:", prompt)
     # Set up headers
     headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
 
@@ -42,7 +43,8 @@ def call(text, prompt="V1_0_0"):
                     "error": "Invalid JSON response from model",
                     "raw_output": model_output,
                 }
-                call(model_output, "fix_json")
+            print("Attempting to fix json object")
+            return call(model_output, "fix_json")
 
     return {
         "error": f"API request failed with status {response.status_code}",
