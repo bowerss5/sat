@@ -1,6 +1,5 @@
-V1_0_0 = """Prompt:
-
-Analyze the sentiment of the given text and return confidence scores for the following emotions:
+PROMPTS = {
+    "V1_0_0": """Prompt: Analyze the sentiment of the given text and return confidence scores for the following emotions:
 
 Joy
 Sadness
@@ -9,6 +8,7 @@ Fear
 Surprise
 Disgust
 Neutral
+
 The response should be in JSON format with each emotion as a key and its confidence score as a decimal between 0 and 1 (inclusive), representing the likelihood that the text expresses that emotion. The sum of all confidence scores does not need to equal 1.
 
 Example Input:
@@ -32,3 +32,4 @@ Ensure consistency in formatting and avoid including explanations—only return 
 
 Text: "{PROMPT}"
 """
+}
