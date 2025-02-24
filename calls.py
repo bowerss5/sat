@@ -22,7 +22,11 @@ def call(text, prompt="V1_0_0"):
     # Define the data for the request
     data = {
         "model": "llama3-8b-8192",
-        "messages": [{"role": "user", "content": formatted}],
+        "messages": [
+            {"role": "user", "content": formatted},
+            {"role": "assistant", "content":"```json"}
+        ],
+        "stop":"```"
     }
 
     # Send the request
