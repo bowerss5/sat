@@ -22,13 +22,13 @@ def get_prompts():
 def generate():
     data = request.json
     input_text = data.get("text", "")
-    version = data.get("version", "V1_0_0")
+    prompt = data.get("prompt", "V1_0_0")
     if not input_text:
         return jsonify({"error": "No text provided"}), 400
-    if version not in PROMPTS:
+    if prompt not in PROMPTS:
         return jsonify({"error": "Prompt not found"})
 
-    response_json = call(input_text, version)
+    response_json = call(input_text, prompt)
     return jsonify(response_json)
 
 
