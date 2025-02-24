@@ -15,7 +15,7 @@ CORS(app)
 
 @app.route("/prompts", methods=["GET"])
 def get_prompts():
-    return jsonify(list(PROMPTS.keys()))
+    return jsonify([key for key in PROMPTS.keys() if key != "fix_json"])
 
 
 @app.route("/generate", methods=["POST"])
